@@ -34,18 +34,24 @@ def busquedaAEncontrar(lista, item):
  return numero,encontrado
 
 def ingresarNumerosEnLista(lista):
-   
-   for i in range(1,16):
-      repetido=False
-      num=int(input(f"Ingrese el {i} número "))
-      
-      while num!=0 and repetido==True:
-         
-        num=int(input(f"Ingrese el {i} número que no esté repetido "))
-      lista.append(num)
+   for i in range(1, 16):
+        num = int(input(f"Ingrese el {i} número "))
+        repetido = False
+        for pos in range(len(lista)):
+            if lista[pos] == num:
+                print(f"El número {num} está repetido y se encuentra en la posición: {pos}")
+                repetido = True
+                break  
+        if not repetido:
+            lista.append(num)
 
+def busquedaPositivos(lista):
+    listaPositivos=[]
+    for pos in range(len(lista)):
+        if lista[pos] >0:
+            listaPositivos.append(pos)
+    return listaPositivos
 #Inicio programa
-"""
 print("Ejercicio 1")
 listaNumeros=[]
 max=0
@@ -87,10 +93,37 @@ else:
     print("El número fue encontrado y está en la posición:",pos)
 input("\033[1mPresione enter para continuar\033[0m")
 os.system('cls')
-"""
+
 print("Ejercicio 4")
 listaDeNumeros=[]
 ingresarNumerosEnLista(listaDeNumeros)
-
 input("\033[1mPresione enter para continuar\033[0m")
+os.system('cls')
+
+print("Ejercicio 5")
+nombreAlumnos=[]
+notaAlumnos=[]
+cantMuyBueno=0
+for i in range(4):
+    nombre=input("Ingrese el nombre del alumno ")
+    nombreAlumnos.append(nombre)
+    nota=int(input(f"Ingrese la nota de {nombreAlumnos[i]} "))
+    while nota<0 or nota >10:
+       nota=int(input(f"Ingrese la nota correcta de {nombreAlumnos[i]} "))
+    notaAlumnos.append(nota)
+    if nota>=8:
+       cantMuyBueno=cantMuyBueno+1
+print("La cantidad de alumnos con leyenda Muy Bueno es:",cantMuyBueno)
+input("\033[1mPresione enter para continuar\033[0m")
+os.system('cls')
+
+print("Ejercicio 6")
+listaNumeros=[]
+posicionesPositivos=[]
+for i in range(1,11):
+   num=int(input(f"Ingrese el {i} número "))
+   listaNumeros.append(num)
+posicionesPositivos=busquedaPositivos(listaNumeros)
+print("Las posiciones de los números positivos es",posicionesPositivos)
+input("\033[1mPresione enter para salir\033[0m")
 os.system('cls')
